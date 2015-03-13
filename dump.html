@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+        <script type="text/javascript" src="d3/d3.min.v3.5.5.js"></script>
+        <script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+    </head>
+    <body>
+        <!-- Page elements where data goes -->
+        <div></div>
+        <span></span>
+
+        <script type="text/javascript">
+            // Your beautiful D3 code will go here
+            /*var dataset = [ 25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
+                14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
+                24, 18, 25, 9, 3 ];*/
+            /*var dataset = [];*/
+            
+            var dataset = {"milYears":[{"Time":0.00000,"Iso_tot":-0.0029,"Iso_ice":0.0102,"Iso_do":-0.0131,"Tsurf":-0.0479,"Tdo":0.0570,"Ice_eas":1.164,"Ice_nam":0.1107,"RSL":1.459},
+                {"Time":0.10010,"Iso_tot":-0.0035,"Iso_ice":0.0104,"Iso_do":-0.0139,"Tsurf":-0.0614,"Tdo":0.0604,"Ice_eas":1.207,"Ice_nam":0.1091,"RSL":1.507},
+                {"Time":0.20000,"Iso_tot":-0.0039,"Iso_ice":0.0108,"Iso_do":-0.0147,"Tsurf":-0.0665,"Tdo":0.0638,"Ice_eas":1.238,"Ice_nam":0.1078,"RSL":1.541},
+                {"Time":0.30000,"Iso_tot":-0.0043,"Iso_ice":0.0111,"Iso_do":-0.0154,"Tsurf":-0.0707,"Tdo":0.0670,"Ice_eas":1.281,"Ice_nam":0.1101,"RSL":1.593},
+                {"Time":0.39990,"Iso_tot":-0.0047,"Iso_ice":0.0114,"Iso_do":-0.0161,"Tsurf":-0.0694,"Tdo":0.0699,"Ice_eas":1.323,"Ice_nam":0.1104,"RSL":1.641},
+                {"Time":0.50000,"Iso_tot":-0.0049,"Iso_ice":0.0118,"Iso_do":-0.0167,"Tsurf":-0.0584,"Tdo":0.0724,"Ice_eas":1.369,"Ice_nam":0.1117,"RSL":1.696},
+                {"Time":0.60010,"Iso_tot":-0.0051,"Iso_ice":0.0120,"Iso_do":-0.0171,"Tsurf":-0.0459,"Tdo":0.0744,"Ice_eas":1.421,"Ice_nam":0.1115,"RSL":1.756},
+                {"Time":0.70000,"Iso_tot":-0.0050,"Iso_ice":0.0124,"Iso_do":-0.0174,"Tsurf":-0.0174,"Tdo":0.0756,"Ice_eas":1.461,"Ice_nam":0.1128,"RSL":1.803},
+                {"Time":0.80000,"Iso_tot":-0.0046,"Iso_ice":0.0128,"Iso_do":-0.0174,"Tsurf":0.0347,"Tdo":0.0758,"Ice_eas":1.506,"Ice_nam":0.1149,"RSL":1.843},
+                {"Time":0.89990,"Iso_tot":-0.0039,"Iso_ice":0.0133,"Iso_do":-0.0172,"Tsurf":0.1027,"Tdo":0.0747,"Ice_eas":1.570,"Ice_nam":0.1147,"RSL":1.906}]
+            };
+
+            d3.select("body").select("div").data(dataset.milYears).enter().append("span").text(function(d, i){ return d.Tdo });
+
+            function visualizeit(source){
+                d3.select("body").select("div").data(source).enter().append("span").text(function(d, i){ return d.Tdo, d.Tsurf, d.SRL });
+            };
+
+            var dataset = $.getJSON("300000years_of_temperatures.json", function (json){
+                /*for (var i = 0; i < json.length; i++) {
+                    var counter = json[i];
+                    console.log(counter.Tdo, counter.Tsurf, counter.RSL);
+                    return counter.Tdo, counter.Tsurf, counter.RSL;
+                }*/
+            });
+
+            console.log(dataset.data["Tdo"]);
+
+            /*var dataObj = JSON.parse(dataset, function(temp){
+                for (var i = 0; i < dataset.length; i++) {
+                    var counter = dataset[i];
+                    console.log(counter.Tdo);
+                }
+            });
+
+            //What we do with the data:
+            d3.select("body").select("div").data(dataset).enter().append("span").text(function(oT, sT, rsl) {
+                return "I can count up to " + oT, sT, rsl;
+                });
+
+            /* Old code
+            for (var i=0; i < 30; i++){ //we make 30 data points
+                var newNumber = Math.round(Math.random()*30); //a random number that's between 0-30. Math.random produces a random number that is a float
+                dataset.push(newNumber);
+            }
+            d3.select("body").selectAll("div").data(dataset).enter().append("div").attr("class", "bar").style("height", function(d){
+                var barHeight = d*5; //scaling so that the bars are bigger
+                return barHeight + "px";
+            });
+
+            d3.select("body").append("p").text("New paragraph!");*/
+        </script>
+    </body>
+</html> 

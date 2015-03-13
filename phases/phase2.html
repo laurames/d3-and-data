@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <link rel="stylesheet" type="text/css" href="../css/main.css"></link>
+        <script type="text/javascript" src="../js/d3.min.v3.5.5.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    </head>
+    <body>
+        <!-- Page elements where data goes -->
+        <div></div>
+        <span></span>
+
+        <script type="text/javascript">
+            var margin = {top: 20, right: 80, bottom: 30, left: 50},
+                width = 960 - margin.left - margin.right,
+                height = 500 - margin.top - margin.bottom;
+
+            var x = d3.scale.linear().range([width, 0]);
+
+            var y = d3.scale.linear().range([height, 0]);
+
+            var color = d3.scale.category10();
+
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom");
+
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left");
+
+            var line = d3.svg.line()
+                .x(function(d) { return x(d.Time); })
+                .y(function(d) { return y(d.Tdo); });
+
+            var svg = d3.select("body").append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            //load external data:
+            d3.json("../json/300000years_of_temperatures.json", function(error, json) {
+                if (error!=null) return console.warn(error);
+                dataSet = json;
+                visualizeit(dataSet);
+            });
+
+            function visualizeit(data){
+                x.domain(d3.extent(data, function(d) { return d.Time; }));
+                y.domain(d3.extent(data, function(d) { return d.Tdo; }));
+
+                svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis);
+
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis)
+                    .append("text")
+                    .attr("transform", "rotate(-90)")
+                    .attr("y", 6)
+                    .attr("dy", ".71em")
+                    .style("text-anchor", "end")
+                    .text("Temperature");
+
+                svg.append("path")
+                    .datum(data)
+                    .attr("class", "line")
+                    .attr("d", line);
+
+                    /*This is not yet working*/
+                svg.append("line")          // attach a line
+                    .style("stroke", "black")  // colour the line
+                    .attr("x1", 3)
+                    .attr("y1", 0)
+                    .attr("x2", 0)
+                    .attr("y2", 0)
+            };
+        </script>
+    </body>
+</html> 

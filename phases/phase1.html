@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <link rel="stylesheet" type="text/css" href="../css/main.css"></link>
+        <script type="text/javascript" src="../js/d3.min.v3.5.5.js"></script>
+        <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+    </head>
+    <body>
+        <!-- Page elements where data goes -->
+        <div></div>
+        <span></span>
+
+        <script type="text/javascript">
+            //load external data:
+            d3.json("../json/300000years_of_temperatures.json", function(error, json) {
+                if (error!=null) return console.warn(error);
+                dataSet = json;
+                visualizeit(dataSet);
+            });
+
+            function visualizeit(dataSet){
+                d3.select("body").select("div").data(dataSet).enter().append("span").text(function(d, i){ return d.Tdo });
+            };
+        </script>
+    </body>
+</html> 
