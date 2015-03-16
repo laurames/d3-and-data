@@ -13,17 +13,16 @@
         <span></span>
 
         <script type="text/javascript">
-            var margin = {top: 10, right: 10, bottom: 50, left: 50},
-                width = window.innerWidth-60;
+            var margin = {top: 10, right: 50, bottom: 50, left: 50},
+                width = window.innerWidth-100;
                 height = window.innerHeight-60;
 
-            /*var x = d3.scale.linear().range([width, 0]);
-            var y = d3.scale.linear().range([height, 0]);*/
-
             var x = d3.scale.linear()
+                .domain([0, width])
                 .range([0, width]);
 
             var y = d3.scale.linear()
+                .domain([height, 0])
                 .range([height, 0]);
 
             //coloring the different lines
@@ -48,6 +47,19 @@
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+                //for annimating it variables:
+                var random = d3.random.normal(0, width);
+
+                var zoom = d3.behavior.zoom()
+                    .x(x)
+                    .y(y)
+                    .size([width, height])
+                    .on("zoom", zoomed);
+
+                var k = 80;
+
+                //end of annimation variables
+
             //load external data:
             d3.json("json/3milYears_temp.json", function(error, json) {
                 if (error!=null) return console.warn(error);
@@ -61,12 +73,10 @@
 
                 var temperatures = color.domain().map(function(name){
                     return {
-                        //if (name!=countTime){
-                            name: name,
+                            nameOf: name,
                             values: data.map(function(d){
                                 return {countTime: d.countTime, temperature: +d[name]};
                             })
-                        //}
                     };
                 });
 
@@ -100,15 +110,56 @@
                 difTemp.append("path")
                     .attr("class", "line")
                     .attr("d", function(d) { return line(d.values); })
-                    .style("stroke", function(d) { return color(d.name); });
+                    .style("stroke", function(d) { return color(d.nameOf); });
 
+/*There is some problem here that i can not figure out:
+                difTemp.append("text")
+                    .datum(function(d) {console.log({lastData: d.values[d.values.length-1]}); 
+                        return {nameOf: name, lastData: d.values[d.values.length-1]}})
+                    .attr("transform", function(d) { console.log(x(d.lastData.countTime) + "," + y(d.lastData.temperature));
+                        return "translate(" + x(d.lastData.countTime) + "," + y(d.lastData.temperature) + ")"; })
+                    .attr("x",3)
+                    .attr("y", ".35em")
+                    .text(function(d) { return d.nameOf; });
+//example piece of code:
                 /*difTemp.append("text")
-                    .datum(function(d) { return {name: d.name, value: d.values[d.values.length-1]}; })
-                    //.attr("transform", function(d) { return "translate(" + x(d.countTime) + "," + y(d.temperature) + ")"; })
-                    //.attr("x", 3)
-                    //.attr("y", ".35em")
-                    .text(function(d) { return d.name; });*/
+                    .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+                    .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+                    .attr("x", 3)
+                    .attr("dy", ".35em")
+                .text(function(d) { return d.name; });*/
             };
+
+            var context = svg;
+            svg.call(zoom.event);
+            jump();
+
+            function zoomed() {
+                //context.fillRect(0, 0, width, height);
+                context.lineWidth = 4 * zoom.scale();
+                for (var d = x.domain(),
+                    x0 = Math.floor(d[0] / k) * k,
+                    x1 = Math.ceil(d[1] / k) * k; x0 <= x1; x0 += k) {
+                        context.createElementNS(svgns, "path");
+                        context.setAttributeNS(M(x0) 0);
+                        context.setAttributeNS(Lx0 height);
+                    }
+                for (var d = y.domain(),
+                y0 = Math.floor(d[0] / k) * k,
+                y1 = Math.ceil(d[1] / k) * k; y0 <= y1; y0 += k) {
+                    context.beginPath();
+                    context.moveTo(0, y(y0));
+                    context.lineTo(width, y(y0));
+                    context.stroke();
+                }
+            }
+
+            function jump() {
+                svg.transition()
+                .duration(5000)
+                .call(zoom.translate([random(), random()]).event)
+                .each("end", jump);
+            }
         </script>
     </body>
 </html> 
