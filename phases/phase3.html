@@ -57,8 +57,6 @@
                     return key !== "countTime" && key!=="rsl";
                 }));
 
-                console.log("#######################################");
-                console.log(color.domain());
                 var temperatures = color.domain().map(function(name){
                     return {
                             name: name,
@@ -85,8 +83,6 @@
                     .call(yAxis)
                     .append("text")
                     .attr("transform", "rotate(-90)")
-                    //.attr("y", 6)
-                    .attr("dy", ".71em")
                     .style("text-anchor", "end")
                     .text("Temperature delta T");
 
@@ -99,6 +95,16 @@
                     .attr("class", "line")
                     .attr("d", function(d) { return line(d.values); })
                     .style("stroke", function(d) { return color(d.name); });
+
+                svg.append("g")
+                    .attr("class", "baseLine")
+                    .append("line")
+                    .attr("x1", 0)
+                    .attr("y1", (height/13.5)*4)
+                    .attr("x2", width)
+                    .attr("y2", (height/13.5)*4)
+                    .attr("stroke-width", 1)
+                    .attr("stroke", "black");
             };
         </script>
     </body>
