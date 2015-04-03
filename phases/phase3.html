@@ -3,14 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title>D3 Test</title>
-        <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+        <link rel="stylesheet" type="text/css" href="../css/main.css"></link>
         <script type="text/javascript" src="../js/d3.min.v3.5.5.js"></script>
         <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
     </head>
     <body>
         <!-- Page elements where data goes -->
-        <div></div>
-        <span></span>
 
         <script type="text/javascript">
             var margin = {top: 10, right: 10, bottom: 50, left: 50},
@@ -21,7 +19,7 @@
             var y = d3.scale.linear().range([height, 0]);*/
 
             var x = d3.scale.linear()
-                .range([0, width]);
+                .range([width, 0]);
 
             var y = d3.scale.linear()
                 .range([height, 0]);
@@ -56,17 +54,17 @@
 
             function visualizeit(data){
                 color.domain(d3.keys(data[0]).filter(function(key){
-                    return key !== "countTime" & key!=="rsl";
+                    return key !== "countTime" && key!=="rsl";
                 }));
 
+                console.log("#######################################");
+                console.log(color.domain());
                 var temperatures = color.domain().map(function(name){
                     return {
-                        //if (name!=countTime){
                             name: name,
                             values: data.map(function(d){
                                 return {countTime: d.countTime, temperature: +d[name]};
                             })
-                        //}
                     };
                 });
 
@@ -87,7 +85,7 @@
                     .call(yAxis)
                     .append("text")
                     .attr("transform", "rotate(-90)")
-                    .attr("y", 6)
+                    //.attr("y", 6)
                     .attr("dy", ".71em")
                     .style("text-anchor", "end")
                     .text("Temperature delta T");

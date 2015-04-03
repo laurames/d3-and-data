@@ -1,22 +1,10 @@
-/*div.bar{
-	width: 20px;
-	height: 75px;
-	background-color: purple;
-	display: inline-block;
-	margin-right: 2px;
-}
-
-.value{
-	font-size: 1.5em;
-}
-
 /*Main css file for Thesis*/
 
 html, body {
   width:  100%;
   height: 100%;
   margin: 0px;
-  font: 10px sans-serif;
+  font: 14px sans-serif;
 }
 
 .axis path,
@@ -27,7 +15,7 @@ html, body {
 }
 
 .x.axis path {
-  display: none;
+  
 }
 
 .line {
