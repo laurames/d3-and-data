@@ -5,7 +5,11 @@
         <meta name="description" content="Thesis project: Making data accesible: An overview of interac-tive data visualization using D3.js as applied to scientific datasets">
         <meta name="keywords" content="HTML,CSS,JSON,JavaScript">
         <meta name="author" content="Laura Meskanen-Kundu">
-        <title>D3 Test</title>
+        <meta property="og:title" content="Thesis project: Making data accesible: An overview of interac-tive data visualization using D3.js as applied to scientific datasets" />
+        <meta property="og:site_name" content="3 million years of Earth Temperatures"/>
+        <meta property="og:url" content="http://www.lauramk.me/home/temperatures" />
+        <meta property="og:description" content="Scientific data of ice core samples 3 milion years to present displayed in an interactive storyline. A final year Media Engineering thesis project into data analysis and D3js." />
+        <title>3 million years of Earth Temperatures</title>
         <script type="text/javascript" src="js/d3.min.v3.5.5.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
         <!-- Latest compiled and minified CSS -->
@@ -14,15 +18,59 @@
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- JavaScript file -->
+        <script type="text/javascript" src="js/runner.js"></script>
+        <!-- Main css to overwrite bootstrap -->
         <link rel="stylesheet" type="text/css" href="css/main.css">
+        <!-- Google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Megrim|Roboto+Slab:300" rel="stylesheet" type="text/css">
     </head>
     <body>
+    <div class="row">
+        <div class="col-md-12 center-block" id="svgGraph">
+            
+        </div>
+    </div>
+    <div class="container-fuid relative">
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=472411092833685&version=v2.3";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
         <!-- Page elements where data goes -->
-
-        <script type="text/javascript">
+        <div class="container fill earth">
+            <div class="stars"></div>
+            <div class="row">
+                <div class="col-md-12 text-center heading">
+                    <h1>3 milion years <span>of</span> Earth Temperatures</h1>
+                    <p>Technology is moving at a very fast pace, but we are still representing data as tables, static graphs and infographics that don’t create an impact to the population at large. Excluding the scientific and educational communities, to the common man information should be displayed in an entertaining manner. This project set out to fulfil this goal by using known technologies from d3js, design guidelines, CSS3 animations, HTML5 elements to real scientific data from the United States National Climate Data Center. The final product is a one page web application displaying Bintanja and van de Wal 2008 report of <a class="text" href="ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/bintanja2008/bintanja2008.txt" target="_blank">3,000,000 Years Global Temperatures according to Ice Volume (δ18O)</a>. The data was plotted using D3js, made interactive with JavaScript and laid out using Twitter Bootstrap. What can be concluded is that it is possible to create interactive content with current technologies, but the process is still only achievable after extensive study of the technologies involved. Further development has to be made for data interactive tools to become easier to use and to produce large scale interactive web applications involving data display and analysis. <br/><i class="fa fa-star"></i><br/> After finishing please take the survay on the effectiveness of this data visualization: <a href="https://docs.google.com/forms/d/1IO_pfpqdK3F--9ZTX762PH-QWgYs1B2YfXkWsuXHbqs/viewform" target="_blank">here</a>.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a class="btn btn-default btn-warning start" href="#" role="button">Start <i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+            <div class="footer">
+              <div class="container-fluid navbar navbar-fixed-bottom">
+                <div class="muted">
+                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="fuzzyporridge" data-count="none" data-hashtags="3milionYearsOfTemperatures">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    <p class="text-right pull-right">Site by: <a href="http://www.lauramk.me/home" target="_blank">Laura Meskanen-Kundu</a> &amp; Big thanks to: <a href="https://fi.linkedin.com/in/sachinkundu" target="_blank">Sachin Kundu</a></p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+        <!--<script type="text/javascript">
             var margin = {top: 10, right: 10, bottom: 50, left: 50},
-                width = window.innerWidth-60;
-                height = window.innerHeight-60;
+                width = document.getElementById('svgGraph').offsetWidth-80; //window.innerWidth;
+                height = document.getElementById('svgGraph').offsetHeight-60; //window.innerHeight;
 
             /*var x = d3.scale.linear().range([width, 0]);
             var y = d3.scale.linear().range([height, 0]);*/
@@ -49,7 +97,7 @@
                 .x(function(d) { return x(d.countTime); })
                 .y(function(d) { return y(d.temperature); });
 
-            var svg = d3.select("body").append("svg")
+            var svg = d3.select("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
@@ -92,6 +140,7 @@
                     .call(yAxis)
                     .append("text")
                     .attr("transform", "rotate(-90)")
+                    .attr("dy", "-2em")
                     .style("text-anchor", "end")
                     .text("Temperature delta T");
 
@@ -120,8 +169,8 @@
                     .attr("x2", width)
                     .attr("y2", (height/13.5)*4)
                     .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+                    .attr("stroke", "white");
             };
-        </script>
+        </script>-->
     </body>
 </html> 

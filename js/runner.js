@@ -26,21 +26,22 @@ $( document ).ready(function() {
         .scale(y)
         .orient("left");
 
-    var svg = d3.select(".figure").append("svg")
+    var svg = d3.select("#svgGraph").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    $( ".btn" ).click(function() {
+    $( ".start" ).click(function() {
         begin();
     });
 
     function begin() {
-        $( ".btn" ).off("click");
-        $(".jumbotron").hide();
+        $( ".start" ).off("click");
+        $(".relative").hide();
         runner("../json/1.json");
-        var figure = $(".figure");
+        var figure = $("#svgGraph");
+        figure.show();
         figure.append('<p><a class="btn btn-lg btn-success next" href="#" role="button">Next</a></p>');
         figure.append('<p><a class="btn btn-lg btn-success prev" href="#" role="button">Prev</a></p>');
         var nextButton = $(".next");
@@ -92,10 +93,10 @@ $( document ).ready(function() {
         nextButton.remove();
         var prevButton = $(".prev");
         prevButton.remove();
-        $(".figure").hide();
-        $(".jumbotron").show();
+        $("#svgGraph").hide();
+        $(".relative").show();
         $( ".btn" ).click(function() {
-            $(".figure").show();
+            $("#svgGraph").show();
             begin();
         });
 

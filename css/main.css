@@ -1,10 +1,30 @@
 /*Main css file for Thesis*/
-
 html, body {
   width:  100%;
   height: 100%;
   margin: 0px;
-  font: 14px sans-serif;
+  font: 14px/30px 'Roboto Slab', Georgia, serif;
+  color: #fff;
+  background: none;
+  color: #fff;
+}
+html { 
+  background: url(../img/earth.jpg) no-repeat center center;
+  background-color: #040404;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+h1 > span{
+  font-size: 0.6em;
+}
+a, a:link, a:visited, a:hover, a:active{
+  text-decoration: none;
+}
+.fill { 
+    min-height: 100%;
+    height: 100%;
 }
 
 .axis path,
@@ -14,12 +34,112 @@ html, body {
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
-  
+text {
+  fill: black;
 }
 
 .line {
   fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
+  stroke: blue;
+  stroke-width: 1px;
 }
+
+#svgGraph{
+  position:relative;
+  height: 450px;
+  display: block;
+  margin: auto;
+  display: none;
+}
+.relative{
+  position: relative;
+  overflow: hidden;
+  height: auto;
+}
+.earth h1 {
+  font: 3em/1.5em 'Megrim', Georgia, serif;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 auto 40px auto;
+  text-align: center;
+  border-bottom: dashed 1px rgba(255, 255, 255, .5);
+  padding: 60px 0 10px 0;
+  width: 70%;
+}
+.heading p{
+  font: 14px/30px 'Roboto Slab', Georgia, serif;
+  color: #fff;
+  margin: 0 auto 12px auto;
+  padding-bottom: 30px;
+  border-bottom: dashed 1px rgba(255, 255, 255, .5);
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  -webkit-column-gap: 40px;
+  -moz-column-gap: 40px;
+  column-gap: 40px;
+  letter-spacing: 0.03em;
+}
+.text{
+  text-decoration: none;
+  color: #B2B2B2;
+}
+.row{
+  z-index: 100;
+}
+.btn{
+  font: 2em/2em 'Megrim', Georgia, serif;
+  font-weight: 800;
+  margin: 20px 0;
+}
+.navbar{
+  padding: 0 40px;
+  background-color: #000;
+}
+.footer{
+  margin-top: 100px;
+}
+.footer p {
+  font: 12px/30px 'Roboto Slab', Georgia, serif;
+  color: #fff;
+  letter-spacing: 0.03em;
+}
+@-webkit-keyframes rotate {
+  from { -webkit-transform: rotate(0deg);  }
+  to { -webkit-transform: rotate(360deg);  }
+}
+.earth .stars {
+  position: absolute;
+  left: -10%;
+  background: url(../img/stars2.png);
+  display: block;
+  width: 790px;
+  height: 800px;
+  top: 0;
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 40s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: rotate;
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  z-index: 0;
+}
+.fb-like{
+    position:relative;
+    top:-10px;
+    padding-right: 10px;
+}
+
+/*
+svg{
+  display: block;
+  margin: auto;
+}
+.social li{
+    display:inline;
+}
+*/
+
+/* FIRST VIEW */
