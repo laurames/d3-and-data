@@ -6,113 +6,16 @@
         <link rel="stylesheet" type="text/css" href="../css/main.css">
         <script type="text/javascript" src="../js/d3.min.v3.5.5.js"></script>
         <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="../js/runner.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <!-- Page elements where data goes -->
-
-        <script type="text/javascript">
-            var margin = {top: 10, right: 10, bottom: 50, left: 50},
-                width = window.innerWidth-60;
-                height = window.innerHeight-60;
-
-            /*var x = d3.scale.linear().range([width, 0]);
-            var y = d3.scale.linear().range([height, 0]);*/
-
-            var x = d3.scale.linear()
-                .range([width, 0]);
-
-            var y = d3.scale.linear()
-                .range([height, 0]);
-
-            //coloring the different lines
-            var color = d3.scale.category10();
-
-            var xAxis = d3.svg.axis()
-                .scale(x)
-                .orient("bottom");
-
-            var yAxis = d3.svg.axis()
-                .scale(y)
-                .orient("left");
-
-            var line = d3.svg.line()
-                .interpolate("basis")
-                .x(function(d) { return x(d.countTime); })
-                .y(function(d) { return y(d.temperature); });
-
-            var svg = d3.select("body").append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-            //load external data:
-            d3.json("../json/3milYears_temp.json", function(error, json) {
-                if (error!=null) return console.warn(error);
-                visualizeit(json);
-            });
-
-            function visualizeit(data){
-                color.domain(d3.keys(data[0]).filter(function(key){
-                    return key !== "countTime" && key!=="rsl";
-                }));
-
-                var temperatures = color.domain().map(function(name){
-                    return {
-                            name: name,
-                            values: data.map(function(d){
-                                return {countTime: d.countTime, temperature: +d[name]};
-                            })
-                    };
-                });
-
-                x.domain(d3.extent(data, function(d) { return d.countTime; }));
-
-                y.domain([
-                    d3.min(temperatures, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
-                    d3.max(temperatures, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
-                    ]);
-
-                svg.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis);
-
-                svg.append("g")
-                    .attr("class", "y axis")
-                    .call(yAxis)
-                    .append("text")
-                    .attr("transform", "rotate(-90)")
-                    .style("text-anchor", "end")
-                    .text("Temperature delta T");
-
-                var difTemp = svg.selectAll(".temp")
-                    .data(temperatures)
-                    .enter().append("g")
-                    .attr("class", "temp");
-
-                difTemp.append("path")
-                    .attr("class", "line")
-                    .attr("d", function(d) { return line(d.values); })
-                    .style("stroke", function(d) { return color(d.name); });
-
-                d3.select(".temp").on("click", function(d, i){
-                        var k;
-                        console.log(d);
-                        k = 2;
-                        svg.transition().duration(750).attr("transform", "scale(" + k + ")");
-                });
-
-                svg.append("g")
-                    .attr("class", "baseLine")
-                    .append("line")
-                    .attr("x1", 0)
-                    .attr("y1", (height/13.5)*4)
-                    .attr("x2", width)
-                    .attr("y2", (height/13.5)*4)
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "black");
-            };
-        </script>
+    <div class="jumbotron">
+        <h1>Get Started</h1>
+        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+    </div>
+    <div class="figure"></div>
     </body>
 </html> 
