@@ -7,6 +7,7 @@ var xAxis, yAxis, svg;
 var x, y;
 var color;
 var svgLine;
+
 $( document ).ready(function() {
     var margin = {top: 10, right: 10, bottom: 50, left: 50},
         width = window.innerWidth - 60;
@@ -169,12 +170,12 @@ $( document ).ready(function() {
                 d3.min(temperatures, function (c) {
                     return d3.min(c.values, function (v) {
                         return v.temperature;
-                    });
+                    })-1;
                 }),
                 d3.max(temperatures, function (c) {
                     return d3.max(c.values, function (v) {
                         return v.temperature;
-                    });
+                    })+1;
                 })
             ]);
         }
@@ -185,13 +186,14 @@ $( document ).ready(function() {
 
             fillColorDomain(data);
             temperatures = generateTempColors(data);
-
+            setAxisDomains(data);    
+            d3.select(".x.axis").call(xAxis);
+            d3.select(".y.axis").call(yAxis);
             var difTemp = svg.selectAll(".temp")
                     .data(temperatures)
                     .enter().append("g")
                     .attr("class", "temp");
             
-            setAxisDomains(data);    
             difTemp.append("path")
                 .attr("class", "line")
                 .attr("d", function (d) {
@@ -212,7 +214,8 @@ $( document ).ready(function() {
 
         function visualizeit(data) {
             fillColorDomain(data);
-            generateTempColors(data);
+            
+            temperatures = generateTempColors(data);
 
             setAxisDomains(data);
 
@@ -221,9 +224,9 @@ $( document ).ready(function() {
             .duration(1000)
             .attr("d", function(d) {
                 if(d.name == "sTemp") {
-                    return svgLine(generateTempColors(data)[0].values);
+                    return svgLine(temperatures[0].values);
                 } else { 
-                    return svgLine(generateTempColors(data)[1].values); 
+                    return svgLine(temperatures[1].values); 
                 }
             });
             graphics.select(".x.axis") // change the x axis
