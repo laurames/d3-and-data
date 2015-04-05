@@ -9,8 +9,7 @@ html, body {
   color: #fff;
 }
 html { 
-  background: url(../img/earth.jpg) no-repeat center center;
-  background-color: #040404;
+  background: #040404 url(../img/earth.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -30,12 +29,12 @@ a, a:link, a:visited, a:hover, a:active{
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #fff;
   shape-rendering: crispEdges;
 }
 
 text {
-  fill: black;
+  fill: white;
 }
 
 .line {
@@ -46,7 +45,7 @@ text {
 
 #svgGraph{
   position:relative;
-  height: 450px;
+  max-width: 100%;
   display: block;
   margin: auto;
   display: none;
@@ -92,6 +91,10 @@ text {
   font-weight: 800;
   margin: 20px 0;
 }
+.btn > .glyphicon-menu-right{
+  font-size: 0.8em;
+  margin-left: -8px;
+}
 .navbar{
   padding: 0 40px;
   background-color: #000;
@@ -110,7 +113,7 @@ text {
 }
 .earth .stars {
   position: absolute;
-  left: -10%;
+  left: -1%;
   background: url(../img/stars2.png);
   display: block;
   width: 790px;

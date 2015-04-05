@@ -5,8 +5,9 @@ var MAX_PARTITIONS = 3;
 
 $( document ).ready(function() {
     var margin = {top: 10, right: 10, bottom: 50, left: 50},
-        width = window.innerWidth - 60;
-    height = window.innerHeight - 60;
+        width = document.getElementById('relative').offsetWidth-100,
+        height = window.innerHeight - 80;
+
     var zoomed = false;
 
     var x = d3.scale.linear()
@@ -39,6 +40,7 @@ $( document ).ready(function() {
     function begin() {
         $( ".start" ).off("click");
         $(".relative").hide();
+        $("html").css("background", "#040404");
         runner("../json/1.json");
         var figure = $("#svgGraph");
         figure.show();
@@ -124,7 +126,7 @@ $( document ).ready(function() {
 
         function visualizeit(data) {
             color.domain(d3.keys(data[0]).filter(function (key) {
-                return key !== "countTime" && key !== "rsl";
+                return key !== "countTime" && key !== "color";
             }));
 
             var temperatures = color.domain().map(function (name) {
@@ -144,12 +146,12 @@ $( document ).ready(function() {
                 d3.min(temperatures, function (c) {
                     return d3.min(c.values, function (v) {
                         return v.temperature;
-                    });
+                    })-1;
                 }),
                 d3.max(temperatures, function (c) {
                     return d3.max(c.values, function (v) {
                         return v.temperature;
-                    });
+                    })+1;
                 })
             ]);
 
@@ -163,6 +165,7 @@ $( document ).ready(function() {
                 .call(yAxis)
                 .append("text")
                 .attr("transform", "rotate(-90)")
+                .attr("dy", "-2em")
                 .style("text-anchor", "end")
                 .text("Temperature delta T");
 
@@ -180,6 +183,7 @@ $( document ).ready(function() {
                     return color(d.name);
                 });
 
+            /* Only on the big graph
             svg.append("g")
                 .attr("class", "baseLine")
                 .append("line")
@@ -188,7 +192,7 @@ $( document ).ready(function() {
                 .attr("x2", width)
                 .attr("y2", (height / 13.5) * 4)
                 .attr("stroke-width", 1)
-                .attr("stroke", "black");
+                .attr("stroke", "white");*/
         };
     }
 });
