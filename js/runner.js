@@ -6,7 +6,7 @@ var MAX_PARTITIONS = 3;
 $( document ).ready(function() {
     var margin = {top: 10, right: 10, bottom: 50, left: 50},
         width = document.getElementById('relative').offsetWidth-100,
-        height = window.innerHeight - 80;
+        height = window.innerHeight - 120;
 
     var zoomed = false;
 

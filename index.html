@@ -30,14 +30,23 @@
     <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 center-block" id="svgGraph">
-                
+            <div id="one">
+                <div class="popover-static"> <!-- NEW -->
+                  <div class="popover top">
+                    <div class="arrow"></div>
+                    <h3 class="popover-title">Popover top</h3>
+                    <div class="popover-content">
+                      <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+                    </div>
+                  </div>
+                </div>
             </div>
+            <div class="col-md-12 center-block" id="svgGraph"></div>
         </div>
     </div>
     <div class="container-fuid relative" id="relative">
         <div id="fb-root"></div>
-        <script>(function(d, s, id) {
+        <script type="text/javascript">(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) return;
           js = d.createElement(s); js.id = id;
@@ -58,17 +67,17 @@
                     <a class="btn btn-default btn-warning start" href="#" role="button">Start <i class="glyphicon glyphicon-menu-right"></i><i class="glyphicon glyphicon-menu-right"></i></a>
                 </div>
             </div>
-            <div class="footer">
-              <div class="container-fluid navbar navbar-fixed-bottom">
-                <div class="muted">
-                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="fuzzyporridge" data-count="none" data-hashtags="3milionYearsOfTemperatures">Tweet</a>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                    <p class="text-right pull-right">Site by: <a href="http://www.lauramk.me/home" target="_blank">Laura Meskanen-Kundu</a> &amp; Big thanks to: <a href="https://fi.linkedin.com/in/sachinkundu" target="_blank">Sachin Kundu</a></p>
-                </div>
-              </div>
-            </div>
         </div>
+    </div>
+    <div class="footer">
+      <div class="container-fluid navbar navbar-fixed-bottom">
+        <div class="muted">
+            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="fuzzyporridge" data-count="none" data-hashtags="3milionYearsOfTemperatures">Tweet</a>
+            <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            <p class="text-right pull-right">Site by: <a href="http://www.lauramk.me/home" target="_blank">Laura Meskanen-Kundu</a> &amp; Big thanks to: <a href="https://fi.linkedin.com/in/sachinkundu" target="_blank">Sachin Kundu</a></p>
+        </div>
+      </div>
     </div>
     </body>
 </html> 

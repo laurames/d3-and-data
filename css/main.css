@@ -1,4 +1,5 @@
-/*Main css file for Thesis*/
+/*Main css file for Thesis
+by Laura Meskanen-Kundu*/
 html, body {
   width:  100%;
   height: 100%;
@@ -15,6 +16,7 @@ html {
   -o-background-size: cover;
   background-size: cover;
 }
+/* Initial welcome page */
 h1 > span{
   font-size: 0.6em;
 }
@@ -24,31 +26,6 @@ a, a:link, a:visited, a:hover, a:active{
 .fill { 
     min-height: 100%;
     height: 100%;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #fff;
-  shape-rendering: crispEdges;
-}
-
-text {
-  fill: white;
-}
-
-.line {
-  fill: none;
-  stroke: blue;
-  stroke-width: 1px;
-}
-
-#svgGraph{
-  position:relative;
-  max-width: 100%;
-  display: block;
-  margin: auto;
-  display: none;
 }
 .relative{
   position: relative;
@@ -64,6 +41,28 @@ text {
   border-bottom: dashed 1px rgba(255, 255, 255, .5);
   padding: 60px 0 10px 0;
   width: 70%;
+}
+@-webkit-keyframes rotate {
+  from { -webkit-transform: rotate(0deg);  }
+  to { -webkit-transform: rotate(360deg);  }
+}
+.earth .stars {
+  position: absolute;
+  left: -1%;
+  background: url(../img/stars2.png);
+  display: block;
+  width: 790px;
+  height: 800px;
+  top: 0;
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 40s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: rotate;
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  z-index: 0;
 }
 .heading p{
   font: 14px/30px 'Roboto Slab', Georgia, serif;
@@ -95,6 +94,32 @@ text {
   font-size: 0.8em;
   margin-left: -8px;
 }
+/* d3js graph styles */
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+text {
+  fill: white;
+}
+.line {
+  fill: none;
+  stroke: blue;
+  stroke-width: 1px;
+}
+#svgGraph{
+  position:relative;
+  max-width: 100%;
+  display: block;
+  margin: auto;
+  display: none;
+}
+.era{
+  opacity: 0.2;
+}
+/* Footer */
 .navbar{
   padding: 0 40px;
   background-color: #000;
@@ -107,42 +132,23 @@ text {
   color: #fff;
   letter-spacing: 0.03em;
 }
-@-webkit-keyframes rotate {
-  from { -webkit-transform: rotate(0deg);  }
-  to { -webkit-transform: rotate(360deg);  }
-}
-.earth .stars {
-  position: absolute;
-  left: -1%;
-  background: url(../img/stars2.png);
-  display: block;
-  width: 790px;
-  height: 800px;
-  top: 0;
-  -webkit-animation-name: rotate;
-  -webkit-animation-duration: 40s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-  animation-name: rotate;
-  animation-duration: 40s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  z-index: 0;
-}
 .fb-like{
     position:relative;
     top:-10px;
     padding-right: 10px;
 }
-
-/*
-svg{
-  display: block;
-  margin: auto;
-}
-.social li{
-    display:inline;
-}
-*/
-
 /* FIRST VIEW */
+.popover-static {
+  position: absolute;
+  z-index: 1000;
+}
+.popover-static .popover {
+  position: relative;
+  display: block;
+  margin: 20px;
+  color: black;
+}
+.popover, .popover-title{
+  background-color: rgb(255, 255, 255); /* The Fallback */
+  background-color: rgba(255, 255, 255, 0.7);
+}
