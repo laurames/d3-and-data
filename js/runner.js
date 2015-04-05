@@ -58,30 +58,43 @@ $( document ).ready(function() {
     function loadNext() {
         var nextButton = $(".next");
         var prevButton = $(".prev");
-        var currentPage = nextButton.data("next");
-        runner("../json/" + nextButton.data("next") + ".json");
-        if(currentPage < MAX_PARTITIONS) {
-            nextButton.data("next", currentPage+1);
+        var clickedPage = nextButton.data("next");
+        console.log("loading in loadNext() " + clickedPage + ".json");
+        runner("../json/" + clickedPage + ".json");
+        if(clickedPage < MAX_PARTITIONS) {
+            console.log("updating next button next attribute to " + (clickedPage+1));
+            nextButton.data("next", clickedPage + 1);
         } else {
+            nextButton.unbind("click");
             nextButton.on("click", function() {
+                console.log("rotating back to start");
                 rotate();
             })
         }
-        prevButton.data("prev", currentPage - 1);
-        if(currentPage > 1) {
+        prevButton.data("prev", clickedPage - 1);
+        if(clickedPage > 1) {
             prevButton.show();
             prevButton.unbind("click");
             prevButton.click("click", function() {
+                console.log("prev button clicked");
                 var nextButton = $(".next");
                 var nextPointer = nextButton.data("next");
                 nextButton.data("next", nextPointer - 1);
                 var prevPage = prevButton.data("prev");
+                var prevPage = prevButton.data("prev");
+                console.log("loading in prev button click " + prevPage + ".json");
                 runner("../json/" + prevPage + ".json");
                 if(prevPage > 1) {
+                    console.log("updating prev page pointer to " + (prevPage-1))
                     prevButton.data("prev", prevPage-1);
                 } else {
                     prevButton.hide();
-                    nextButton.data("next", prevPage + 1);
+                    nextButton.data("next", 2);
+                    console.log("hiding prev button, showing next button");
+                    nextButton.unbind("click");
+                    nextButton.on("click", function() {
+                        loadNext();
+                    })
                     nextButton.show();
                 }
             })
@@ -117,7 +130,6 @@ $( document ).ready(function() {
 
         //load external data:
         d3.json(jsonFile, function (error, json) {
-            $('body').append('<p> ' + jsonFile + '</p>')
             if (error != null) return console.warn(error);
             visualizeit(json);
         });
