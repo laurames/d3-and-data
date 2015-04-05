@@ -30,12 +30,12 @@ a, a:link, a:visited, a:hover, a:active{
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #fff;
   shape-rendering: crispEdges;
 }
 
 text {
-  fill: black;
+  fill: white;
 }
 
 .line {
