@@ -10,8 +10,8 @@ var svgLine;
 
 $( document ).ready(function() {
     var margin = {top: 10, right: 10, bottom: 50, left: 50},
-        width = window.innerWidth - 60;
-    height = window.innerHeight - 60;
+        width = document.getElementById('relative').offsetWidth-100,
+        height = window.innerHeight - 80;
 
     x = d3.scale.linear()
         .range([width, 0]);
@@ -75,6 +75,7 @@ $( document ).ready(function() {
     function begin() {
         $( ".start" ).off("click");
         $(".relative").hide();
+        $("html").css("background", "#040404");
         var figure = $("#svgGraph");
         figure.show();
         figure.append('<p><a class="btn btn-lg btn-success next" href="#" role="button">Next</a></p>');
@@ -125,7 +126,7 @@ $( document ).ready(function() {
                     })
                     nextButton.show();
                 }
-            })
+            });
         }
     }
 
@@ -162,28 +163,27 @@ $( document ).ready(function() {
     }
 
     function setAxisDomains(data) {
-            x.domain(d3.extent(data, function (d) {
-                return d.countTime;
-            }));
+        x.domain(d3.extent(data, function (d) {
+            return d.countTime;
+        }));
 
-            y.domain([
-                d3.min(temperatures, function (c) {
-                    return d3.min(c.values, function (v) {
-                        return v.temperature;
-                    })-1;
-                }),
-                d3.max(temperatures, function (c) {
-                    return d3.max(c.values, function (v) {
-                        return v.temperature;
-                    })+1;
-                })
-            ]);
-        }
+        y.domain([
+            d3.min(temperatures, function (c) {
+                return d3.min(c.values, function (v) {
+                    return v.temperature;
+                })-1;
+            }),
+            d3.max(temperatures, function (c) {
+                return d3.max(c.values, function (v) {
+                    return v.temperature;
+                })+1;
+            })
+        ]);
+    }
 
     function firstRun(jsonFile) {
         d3.json(jsonFile, function (error, data) {
             if (error != null) return console.warn(error);
-
             fillColorDomain(data);
             temperatures = generateTempColors(data);
             setAxisDomains(data);    
@@ -235,9 +235,6 @@ $( document ).ready(function() {
             graphics.select(".y.axis") // change the y axis
                 .duration(750)
                 .call(yAxis);
-
-
         }
     }
-
 });

@@ -18,8 +18,9 @@
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <!-- JavaScript file -->
+        
+        <!-- JavaScript file 
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
         <script type="text/javascript" src="js/runner.js"></script>
         <!-- Main css to overwrite bootstrap -->
         <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -27,12 +28,14 @@
         <link href="https://fonts.googleapis.com/css?family=Megrim|Roboto+Slab:300" rel="stylesheet" type="text/css">
     </head>
     <body>
-    <div class="row">
-        <div class="col-md-12 center-block" id="svgGraph">
-            
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 center-block" id="svgGraph">
+                
+            </div>
         </div>
     </div>
-    <div class="container-fuid relative">
+    <div class="container-fuid relative" id="relative">
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
@@ -47,12 +50,12 @@
             <div class="row">
                 <div class="col-md-12 text-center heading">
                     <h1>3 milion years <span>of</span> Earth Temperatures</h1>
-                    <p>Technology is moving at a very fast pace, but we are still representing data as tables, static graphs and infographics that don’t create an impact to the population at large. Excluding the scientific and educational communities, to the common man information should be displayed in an entertaining manner. This project set out to fulfil this goal by using known technologies from d3js, design guidelines, CSS3 animations, HTML5 elements to real scientific data from the United States National Climate Data Center. The final product is a one page web application displaying Bintanja and van de Wal 2008 report of <a class="text" href="ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/bintanja2008/bintanja2008.txt" target="_blank">3,000,000 Years Global Temperatures according to Ice Volume (δ18O)</a>. The data was plotted using D3js, made interactive with JavaScript and laid out using Twitter Bootstrap. What can be concluded is that it is possible to create interactive content with current technologies, but the process is still only achievable after extensive study of the technologies involved. Further development has to be made for data interactive tools to become easier to use and to produce large scale interactive web applications involving data display and analysis. <br/><i class="fa fa-star"></i><br/> After finishing please take the survay on the effectiveness of this data visualization: <a href="https://docs.google.com/forms/d/1IO_pfpqdK3F--9ZTX762PH-QWgYs1B2YfXkWsuXHbqs/viewform" target="_blank">here</a>.</p>
+                    <p>Technology is moving at a very fast pace, but we are still representing data as tables, static graphs and infographics that don’t create an impact to the population at large. Excluding the scientific and educational communities, to the common man information should be displayed in an entertaining manner. This project set out to fulfil this goal by using known technologies from d3js, design guidelines, CSS3 animations, HTML5 elements to real scientific data from the United States National Climate Data Center. The final product is a one page web application displaying Bintanja and van de Wal 2008 report of <a class="text" href="ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/bintanja2008/bintanja2008.txt" target="_blank">3,000,000 Years Global Temperatures according to Ice Volume (δ18O)</a>. The data was plotted using D3js, made interactive with JavaScript and laid out using Twitter Bootstrap. What can be concluded is that it is possible to create interactive content with current technologies, but the process is still only achievable after extensive study of the technologies involved. Further development has to be made for data interactive tools to become easier to use and to produce large scale interactive web applications involving data display and analysis. <br/><i class="glyphicon glyphicon-star"></i><br/> After finishing please take the survay on the effectiveness of this data visualization: <a href="https://docs.google.com/forms/d/1IO_pfpqdK3F--9ZTX762PH-QWgYs1B2YfXkWsuXHbqs/viewform" target="_blank">here</a>.</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a class="btn btn-default btn-warning start" href="#" role="button">Start <i class="fa fa-angle-double-right"></i></a>
+                    <a class="btn btn-default btn-warning start" href="#" role="button">Start <i class="glyphicon glyphicon-menu-right"></i><i class="glyphicon glyphicon-menu-right"></i></a>
                 </div>
             </div>
             <div class="footer">
@@ -67,110 +70,5 @@
             </div>
         </div>
     </div>
-        <!--<script type="text/javascript">
-            var margin = {top: 10, right: 10, bottom: 50, left: 50},
-                width = document.getElementById('svgGraph').offsetWidth-80; //window.innerWidth;
-                height = document.getElementById('svgGraph').offsetHeight-60; //window.innerHeight;
-
-            /*var x = d3.scale.linear().range([width, 0]);
-            var y = d3.scale.linear().range([height, 0]);*/
-
-            var x = d3.scale.linear()
-                .range([width, 0]);
-
-            var y = d3.scale.linear()
-                .range([height, 0]);
-
-            //coloring the different lines
-            var color = d3.scale.category10();
-
-            var xAxis = d3.svg.axis()
-                .scale(x)
-                .orient("bottom");
-
-            var yAxis = d3.svg.axis()
-                .scale(y)
-                .orient("left");
-
-            var line = d3.svg.line()
-                .interpolate("basis")
-                .x(function(d) { return x(d.countTime); })
-                .y(function(d) { return y(d.temperature); });
-
-            var svg = d3.select("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-            //load external data:
-            d3.json("../json/3milYears_temp.json", function(error, json) {
-                if (error!=null) return console.warn(error);
-                visualizeit(json);
-            });
-
-            function visualizeit(data){
-                color.domain(d3.keys(data[0]).filter(function(key){
-                    return key !== "countTime" && key!=="rsl";
-                }));
-
-                var temperatures = color.domain().map(function(name){
-                    return {
-                            name: name,
-                            values: data.map(function(d){
-                                return {countTime: d.countTime, temperature: +d[name]};
-                            })
-                    };
-                });
-
-                x.domain(d3.extent(data, function(d) { return d.countTime; }));
-
-                y.domain([
-                    d3.min(temperatures, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
-                    d3.max(temperatures, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
-                    ]);
-
-                svg.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis);
-
-                svg.append("g")
-                    .attr("class", "y axis")
-                    .call(yAxis)
-                    .append("text")
-                    .attr("transform", "rotate(-90)")
-                    .attr("dy", "-2em")
-                    .style("text-anchor", "end")
-                    .text("Temperature delta T");
-
-                var difTemp = svg.selectAll(".temp")
-                    .data(temperatures)
-                    .enter().append("g")
-                    .attr("class", "temp");
-
-                difTemp.append("path")
-                    .attr("class", "line")
-                    .attr("d", function(d) { return line(d.values); })
-                    .style("stroke", function(d) { return color(d.name); });
-
-                d3.select(".temp").on("click", function(d, i){
-                        var k;
-                        console.log(d);
-                        k = 2;
-                        svg.transition().duration(750).attr("transform", "scale(" + k + ")");
-                });
-
-                svg.append("g")
-                    .attr("class", "baseLine")
-                    .append("line")
-                    .attr("x1", 0)
-                    .attr("y1", (height/13.5)*4)
-                    .attr("x2", width)
-                    .attr("y2", (height/13.5)*4)
-                    .attr("stroke-width", 1)
-                    .attr("stroke", "white");
-            };
-        </script>-->
     </body>
 </html> 
