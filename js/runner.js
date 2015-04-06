@@ -97,9 +97,72 @@ $( document ).ready(function() {
             firstRun("../json/1.json");
             first = false;
         } else {
-            d3.selectAll("g > line").remove();
+
             runner("../json/1.json");
         }
+        var popover = fillPopover(1);
+        popover.show();
+    }
+
+    function firstRun(jsonFile) {
+        d3.json(jsonFile, function (error, data) {
+            if (error != null) return console.warn(error);
+            fillColorDomain(data);
+            temperatures = generateTempColors(data);
+            setAxisDomains(data);
+            d3.select(".x.axis").call(xAxis);
+            d3.select(".y.axis").call(yAxis);
+            var difTemp = svg.selectAll(".temp")
+                .data(temperatures)
+                .enter().append("g")
+                .attr("class", "temp");
+
+            difTemp.append("path")
+                .attr("class", "line")
+                .attr("d", function (d) {
+                    return svgLine(d.values);
+                })
+                .style("stroke", function (d) {
+                    return color(d.name);
+                });
+        });
+    }
+
+    function fillPopover(cur) {
+        var popover = $("#popover-static");
+        var popoverButton = popover.find('.btn-popover');
+        popoverButton.unbind("click");
+        var current = cur.toString();
+        var json = popoverJson[current];
+        popover.find("p").text(json.content);
+        popover.find(".popover-title").text(json.title);
+        popover.find(".popover").removeClass().addClass("popover " + json.placement);
+        popover.css({"left": (json.x * width / 100), "top": (json.y * height / 100)});
+        if('last' in json) {
+            popoverButton.on("click", function() {
+                loadNext();
+            });
+        }
+        if(!("end" in json)) {
+            popoverButton.on("click", function() {
+                popoverNextHandler(cur);
+            });
+        } else {
+            popoverButton.text("Start over");
+            popoverButton.unbind("click");
+            popoverButton.on("click", function() {
+                rotate();
+                popoverButton.text("Tell Me More");
+                popover.hide();
+            })
+        }
+        popover.data("current", cur);
+        return popover;
+    }
+
+    function popoverNextHandler(current) {
+        var current = $("#popover-static").data("current");
+        fillPopover(current + 1);
     }
 
     function loadNext() {
@@ -113,7 +176,7 @@ $( document ).ready(function() {
             nextButton.unbind("click");
             nextButton.on("click", function() {
                 rotate();
-            })
+            });
         }
         prevButton.data("prev", clickedPage - 1);
         if(clickedPage > 1) {
@@ -192,38 +255,8 @@ $( document ).ready(function() {
         ]);
     }
 
-    function firstRun(jsonFile) {
-        d3.json(jsonFile, function (error, data) {
-            console.log("In begin loading file " + jsonFile);
-            if (error != null) return console.warn(error);
-            fillColorDomain(data);
-            temperatures = generateTempColors(data);
-            setAxisDomains(data);    
-            d3.select(".x.axis").call(xAxis);
-            d3.select(".y.axis").call(yAxis);
-            var difTemp = svg.selectAll(".temp")
-                    .data(temperatures)
-                    .enter().append("g")
-                    .attr("class", "temp");
-            
-            difTemp.append("path")
-                .attr("class", "line")
-                .attr("d", function (d) {
-                    return svgLine(d.values);
-                })
-                .style("stroke", function (d) {
-                    return color(d.name);
-                });
-        });
-        var popover = $("#popover-static");
-        popover.find("p").text(popoverJson["11"].content);
-        popover.find(".popover-title").text(popoverJson["11"].title);
-        popover.show();
-    }
-
     function runner(jsonFile) {
         //load external data:
-        console.log("In runner loading file " + jsonFile);
         d3.json(jsonFile, function (error, json) {
             if (error != null) return console.warn(error);
             visualizeit(json);
@@ -236,22 +269,24 @@ $( document ).ready(function() {
 
             setAxisDomains(data);
 
-            var graphics = d3.select("#svgGraph").transition();
-            graphics.selectAll('.line')
-            .duration(1000)
-            .attr("d", function(d) {
-                if(d.name == "sTemp") {
-                    return svgLine(temperatures[0].values);
-                } else { 
-                    return svgLine(temperatures[1].values); 
-                }
-            });
+            var graphics = d3.transition("#svgGraph"); // d3.select().transition();
+
             graphics.select(".x.axis") // change the x axis
                 .duration(750)
                 .call(xAxis);
             graphics.select(".y.axis") // change the y axis
                 .duration(750)
                 .call(yAxis);
+
+            graphics.selectAll('.line')
+            .duration(1000)
+            .attr("d", function(d) {
+                if(d.name == "sTemp") {
+                    return svgLine(temperatures[0].values);
+                } else {
+                    return svgLine(temperatures[1].values);
+                }
+            });
         }
     }
 });

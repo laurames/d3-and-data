@@ -1,17 +1,61 @@
 {
-	"11": {
-		"x": "width/2",
-		"y": 600,
-		"title": "cool title",
-		"content": "super content",
-		"placement": "left"
-	},
-
-	"12": {
-		"x": 800,
-		"y": 500,
-		"title": "cool title 2",
-		"content": "super content 2",
-		"placement": "right"
-		} 
+  "1": {
+    "x": 5,
+    "y": 10,
+    "title": "cool title",
+    "content": "super content",
+    "placement": "left"
+  },
+  "2": {
+    "x": 10,
+    "y": 20,
+    "title": "cool title 2",
+    "content": "super content 2",
+    "placement": "right"
+  },
+  "3": {
+    "x": 20,
+    "y": 30,
+    "title": "cool title 3",
+    "content": "super content 3",
+    "placement": "right"
+  },
+  "4": {
+    "x": 30,
+    "y": 40,
+    "title": "cool title 4",
+    "content": "super content 4",
+    "placement": "right",
+    "last": true
+  },
+  "5": {
+    "x": 5,
+    "y": 10,
+    "title": "cool title",
+    "content": "super content",
+    "placement": "left"
+  },
+  "6": {
+    "x": 10,
+    "y": 20,
+    "title": "cool title 2",
+    "content": "super content 2",
+    "placement": "right"
+  },
+  "7": {
+    "x": 20,
+    "y": 30,
+    "title": "cool title 3",
+    "content": "super content 3",
+    "placement": "right"
+  },
+  "8": {
+    "x": 30,
+    "y": 40,
+    "title": "cool title 4",
+    "content": "super content 4",
+    "placement": "right",
+    "last": true,
+    "end": true
+  }
 }
