@@ -32,12 +32,17 @@ $( document ).ready(function() {
         .scale(y)
         .orient("left");
 
+
     svg = d3.select("#svgGraph").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    
+
+    svg.append("g")
+        .attr("class", "era")
+        .append("rect");
+
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
@@ -87,6 +92,7 @@ $( document ).ready(function() {
             firstRun("../json/1.json");
             first = false;
         } else {
+
             runner("../json/1.json");
         }
         var popover = fillPopover(1);
@@ -100,6 +106,9 @@ $( document ).ready(function() {
             fillColorDomain(data);
             temperatures = generateTempColors(data);
             setAxisDomains(data);
+
+            fillBackgroundColor(data[0].color);
+
             d3.select(".x.axis").call(xAxis);
             d3.select(".y.axis").call(yAxis);
             var difTemp = svg.selectAll(".temp")
@@ -131,7 +140,6 @@ $( document ).ready(function() {
         if('last' in json) {
             popoverButton.on("click", function() {
                 var nextPage = popover.data("page") + 1;
-                console.log(nextPage);
                 loadNext(nextPage);
                 popover.data("page", nextPage);
             });
@@ -217,6 +225,8 @@ $( document ).ready(function() {
         });
 
         function visualizeit(data) {
+            fillBackgroundColor(data[0].color);
+
             fillColorDomain(data);
             
             temperatures = generateTempColors(data);
