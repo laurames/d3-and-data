@@ -1,5 +1,5 @@
 /**
- * Created by sachin on 4/4/15.
+ * Created by Laura on 4/4/15.
  */
 var MAX_PARTITIONS = 6;
 
@@ -61,14 +61,6 @@ $( document ).ready(function() {
         .attr("y2", (height / 13.5) * 4)
         .attr("stroke-width", 1)
         .attr("stroke", "black");
-    
-    $.getJSON( "../json/popovers.json", function( data ) {
-        popoverJson = data;
-    });
-
-    $( ".start" ).click(function() {
-        begin();
-    });
 
     svgLine = d3.svg.line()
         .x(function (d) {
@@ -78,29 +70,27 @@ $( document ).ready(function() {
             return y(d.temperature);
         });
 
+    $.getJSON( "../json/popovers.json", function( data ) {
+        popoverJson = data;
+    });
+
+    $( ".start" ).click(function() {
+        begin();
+    });
+
     function begin() {
         $( ".start" ).off("click");
         $(".relative").hide();
         var figure = $("#svgGraph");
         figure.fadeIn( 1000 );
-        figure.append('<p><a class="btn btn-lg btn-success next" href="#" role="button">Next</a></p>');
-        figure.append('<p><a class="btn btn-lg btn-success prev" href="#" role="button">Prev</a></p>');
-        var nextButton = $(".next");
-        var prevButton = $(".prev");
-        prevButton.hide();
-        nextButton.data("next", 2);
-        prevButton.data("prev", 1)
-        nextButton.click(function() {
-            loadNext();
-        })
         if(first) {
             firstRun("../json/1.json");
             first = false;
         } else {
-
             runner("../json/1.json");
         }
         var popover = fillPopover(1);
+        popover.data("page", 1);
         popover.show();
     }
 
@@ -140,7 +130,10 @@ $( document ).ready(function() {
         popover.css({"left": (json.x * width / 100), "top": (json.y * height / 100)});
         if('last' in json) {
             popoverButton.on("click", function() {
-                loadNext();
+                var nextPage = popover.data("page") + 1;
+                console.log(nextPage);
+                loadNext(nextPage);
+                popover.data("page", nextPage);
             });
         }
         if(!("end" in json)) {
@@ -165,50 +158,11 @@ $( document ).ready(function() {
         fillPopover(current + 1);
     }
 
-    function loadNext() {
-        var nextButton = $(".next");
-        var prevButton = $(".prev");
-        var clickedPage = nextButton.data("next");
-        runner("../json/" + clickedPage + ".json");
-        if(clickedPage < MAX_PARTITIONS) {
-            nextButton.data("next", clickedPage + 1);
-        } else {
-            nextButton.unbind("click");
-            nextButton.on("click", function() {
-                rotate();
-            });
-        }
-        prevButton.data("prev", clickedPage - 1);
-        if(clickedPage > 1) {
-            prevButton.show();
-            prevButton.unbind("click");
-            prevButton.click("click", function() {
-                var nextButton = $(".next");
-                var nextPointer = nextButton.data("next");
-                nextButton.data("next", nextPointer - 1);
-                var prevPage = prevButton.data("prev");
-                var prevPage = prevButton.data("prev");
-                runner("../json/" + prevPage + ".json");
-                if(prevPage > 1) {
-                    prevButton.data("prev", prevPage-1);
-                } else {
-                    prevButton.hide();
-                    nextButton.data("next", 2);
-                    nextButton.unbind("click");
-                    nextButton.on("click", function() {
-                        loadNext();
-                    })
-                    nextButton.show();
-                }
-            });
-        }
+    function loadNext(page) {
+        runner("../json/" + page + ".json");
     }
 
     function rotate() {
-        var nextButton = $(".next");
-        nextButton.remove();
-        var prevButton = $(".prev");
-        prevButton.remove();
         $("#svgGraph").hide();
         $(".relative").show();
         $( ".btn" ).click(function() {
