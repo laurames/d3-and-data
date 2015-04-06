@@ -137,12 +137,13 @@ text {
     top:-10px;
     padding-right: 10px;
 }
-/* FIRST VIEW */
-.popover-static {
+/* views */
+#popover-static {
   position: absolute;
   z-index: 1000;
+  display: none;
 }
-.popover-static .popover {
+#popover-static .popover {
   position: relative;
   display: block;
   margin: 20px;

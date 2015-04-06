@@ -1,0 +1,17 @@
+{
+	"11": {
+		"x": "width/2",
+		"y": 600,
+		"title": "cool title",
+		"content": "super content",
+		"placement": "left"
+	},
+
+	"12": {
+		"x": 800,
+		"y": 500,
+		"title": "cool title 2",
+		"content": "super content 2",
+		"placement": "right"
+		} 
+}

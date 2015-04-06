@@ -1,12 +1,13 @@
 /**
  * Created by sachin on 4/4/15.
  */
-var MAX_PARTITIONS = 3;
+var MAX_PARTITIONS = 6;
 
 var xAxis, yAxis, svg;
 var x, y;
 var color;
 var svgLine;
+var popoverJson;
 
 $( document ).ready(function() {
     var margin = {top: 10, right: 10, bottom: 50, left: 50},
@@ -46,6 +47,7 @@ $( document ).ready(function() {
         .call(yAxis)
         .append("text")
         .attr("transform", "rotate(-90)")
+        .attr("dy", "-2em")
         .style("text-anchor", "end")
         .text("Temperature delta T");
 
@@ -58,13 +60,16 @@ $( document ).ready(function() {
         .attr("y2", (height / 13.5) * 4)
         .attr("stroke-width", 1)
         .attr("stroke", "black");
+    
+    $.getJSON( "../json/popovers.json", function( data ) {
+        popoverJson = data;
+    });
 
     $( ".start" ).click(function() {
         begin();
     });
 
     svgLine = d3.svg.line()
-        .interpolate("basis")
         .x(function (d) {
             return x(d.countTime);
         })
@@ -75,9 +80,8 @@ $( document ).ready(function() {
     function begin() {
         $( ".start" ).off("click");
         $(".relative").hide();
-        $("html").css("background", "#040404");
         var figure = $("#svgGraph");
-        figure.show();
+        figure.fadeIn( 1000 );
         figure.append('<p><a class="btn btn-lg btn-success next" href="#" role="button">Next</a></p>');
         figure.append('<p><a class="btn btn-lg btn-success prev" href="#" role="button">Prev</a></p>');
         var nextButton = $(".next");
@@ -146,7 +150,7 @@ $( document ).ready(function() {
 
     function fillColorDomain(data) {
         color.domain(d3.keys(data[0]).filter(function (key) {
-            return key !== "countTime" && key !== "rsl";
+            return key !== "countTime" && key !== "color";
         }));
     }
 
@@ -203,6 +207,10 @@ $( document ).ready(function() {
                     return color(d.name);
                 });
         });
+        var popover = $("#popover-static");
+        popover.find("p").text(popoverJson["11"].content);
+        popover.find(".popover-title").text(popoverJson["11"].title);
+        popover.show();
     }
 
     function runner(jsonFile) {
