@@ -1,9 +1,9 @@
-#README for d3.js thesis
+#README
+##Thesis project: Making data accesible: An overview of interac-tive data visualization using D3.js as applied to scientific datasets
 
 >Hi there,
->this is completely work in progress. So nothing special here yet, but once it's done it'll be cool, if not for anyone else then at least for me. Poke around if you like.
+>this is my graduation bachelor thesis project for Metropolia University of Applied Sciences in Media Engineering. The one page application written in D3js, jQuery, Bootstrap is an experiment with visualising data and making it interactive. 
 
->Have a great day :)
 
 ##Phases
 ######While i'm working i go through phases to help myself realise what i did before and where i'm trying to go. These can be found in the /phases folder and are as follows:

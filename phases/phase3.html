@@ -47,14 +47,14 @@
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             //load external data:
-            d3.json("../json/3milYears_temp.json", function(error, json) {
+            d3.json("../json/full.json", function(error, json) {
                 if (error!=null) return console.warn(error);
                 visualizeit(json);
             });
 
             function visualizeit(data){
                 color.domain(d3.keys(data[0]).filter(function(key){
-                    return key !== "countTime" && key!=="rsl";
+                    return key !== "countTime" && key!=="color";
                 }));
 
                 var temperatures = color.domain().map(function(name){
@@ -104,7 +104,7 @@
                     .attr("x2", width)
                     .attr("y2", (height/13.5)*4)
                     .attr("stroke-width", 1)
-                    .attr("stroke", "black");
+                    .attr("stroke", "white");
             };
         </script>
     </body>
