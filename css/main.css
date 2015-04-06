@@ -114,6 +114,7 @@ text {
   max-width: 100%;
   display: block;
   margin: auto;
+  margin-top: 50px;
   display: none;
 }
 .era{

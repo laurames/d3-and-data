@@ -13,7 +13,7 @@ var first = true;
 $( document ).ready(function() {
     var margin = {top: 10, right: 10, bottom: 50, left: 50},
         width = document.getElementById('relative').offsetWidth-100,
-        height = window.innerHeight - 120;
+        height = window.innerHeight - 150;
 
     x = d3.scale.linear()
         .range([width, 0]);
@@ -56,16 +56,6 @@ $( document ).ready(function() {
         .attr("dy", "-2em")
         .style("text-anchor", "end")
         .text("Temperature delta T");
-
-    svg.append("g")
-        .attr("class", "baseLine")
-        .append("line")
-        .attr("x1", 0)
-        .attr("y1", (height / 13.5) * 4)
-        .attr("x2", width)
-        .attr("y2", (height / 13.5) * 4)
-        .attr("stroke-width", 1)
-        .attr("stroke", "black");
 
     svgLine = d3.svg.line()
         .x(function (d) {
