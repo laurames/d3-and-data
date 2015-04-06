@@ -186,6 +186,13 @@ $( document ).ready(function() {
         }));
     }
 
+    function fillBackgroundColor(color) {
+        svg.select("g > rect")
+                .attr("height", height) //Math.abs(y.domain()[0]-y.domain()[1])
+                .attr("width", Math.abs(x.domain()[0]))
+                .style("fill", color);
+    } 
+    
     function generateTempColors(data) {
         var temperatures = color.domain().map(function (name) {
             return {
