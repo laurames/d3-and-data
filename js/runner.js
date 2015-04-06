@@ -8,6 +8,7 @@ var x, y;
 var color;
 var svgLine;
 var popoverJson;
+var first = true;
 
 $( document ).ready(function() {
     var margin = {top: 10, right: 10, bottom: 50, left: 50},
@@ -92,7 +93,13 @@ $( document ).ready(function() {
         nextButton.click(function() {
             loadNext();
         })
-        firstRun("../json/1.json");
+        if(first) {
+            firstRun("../json/1.json");
+            first = false;
+        } else {
+            d3.selectAll("g > line").remove();
+            runner("../json/1.json");
+        }
     }
 
     function loadNext() {
@@ -187,6 +194,7 @@ $( document ).ready(function() {
 
     function firstRun(jsonFile) {
         d3.json(jsonFile, function (error, data) {
+            console.log("In begin loading file " + jsonFile);
             if (error != null) return console.warn(error);
             fillColorDomain(data);
             temperatures = generateTempColors(data);
@@ -215,6 +223,7 @@ $( document ).ready(function() {
 
     function runner(jsonFile) {
         //load external data:
+        console.log("In runner loading file " + jsonFile);
         d3.json(jsonFile, function (error, json) {
             if (error != null) return console.warn(error);
             visualizeit(json);
