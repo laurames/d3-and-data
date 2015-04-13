@@ -1,60 +1,79 @@
 {
   "1": {
-    "x": 20,
-    "y": 10,
+    "x": 40,
+    "y": 30,
     "title": "Piacenzian: 3 million - 2,58 million years ago",
-    "content": "Deposition of sediments and mollusks of the Piacenzian correspond with the rise in sea level. oldest known fossils unambiguously identified as Homo habilis date to just after the end of the Piacenzian.",
-    "placement": "right"
+    "content": "The mid-Piacenzian climate represents the most geologically recent interval of long-term average warmth relative to the last million years, and shares similarities with the climate projected for the end of the 21st century (yellow curve). - from Sea Surface Temperature of the mid-Piacenzian Ocean: A Data-Model Comparison, Published 18 June 2013",
+    "placement": "none"
   },
   "2": {
-    "x": 10,
-    "y": 20,
-    "title": "cool title 2",
-    "content": "super content 2",
+    "x": 20,
+    "y": 30,
+    "title": "Long-term average warmth - rise in sea levels",
+    "content": "Deposition of sediments and mollusks of this age correspond with the rise in sea level (yellow curve).",
     "placement": "right"
   },
   "3": {
-    "x": 20,
-    "y": 30,
-    "title": "cool title 3",
-    "content": "super content 3",
-    "placement": "right"
+    "x": 60,
+    "y": 35,
+    "title": "Homo habilis fossils",
+    "content": "Oldest known fossils unambiguously identified as Homo habilis date to just after the end of the Piacenzian.",
+    "placement": "left",
+    "last": true
   },
   "4": {
-    "x": 30,
-    "y": 40,
-    "title": "cool title 4",
-    "content": "super content 4",
-    "placement": "right",
+    "x": 40,
+    "y": 30,
+    "title": "Gelasian: 2,58 million - 1,8 million years ago",
+    "content": "This time age is part of Pleistocene epoch (last ice age) and is part of the world's recent period of repeated glaciations. The modern continents were essentially at their present positions and having moved no more than 100 km relative to each other.",
+    "placement": "none",
     "last": true
   },
   "5": {
-    "x": 5,
-    "y": 10,
-    "title": "cool title",
-    "content": "super content",
-    "placement": "left"
+    "x": 40,
+    "y": 30,
+    "title": "Calabrian: 1,8 million - 0,781 million years ago",
+    "content": "This age is also a part of the last ice age where especially large mammals, succumbed to the harsh climate conditions of this period. Animals such as saber-toothed cats and woolly mammoths roamed the Earth.",
+    "placement": "none"
   },
   "6": {
-    "x": 10,
-    "y": 20,
-    "title": "cool title 2",
-    "content": "super content 2",
-    "placement": "right"
+    "x": 70,
+    "y": 50,
+    "title": "Magnetic pole reversal",
+    "content": "The end of the stage is defined by the last magnetic pole reversal (781 ± 5 Ka) and plunge into an ice age and global drying.",
+    "placement": "left",
+    "last": true
   },
   "7": {
-    "x": 20,
+    "x": 40,
     "y": 30,
-    "title": "cool title 3",
-    "content": "super content 3",
-    "placement": "right"
+    "title": "Ionian: 781 thousand - 126 thousand years ago",
+    "content": "also called Middle Pleistocene,  third of four stages of the most resent ice age. Vegetation was fairly limited in many areas. Although many vertebrates became extinct during this period, mammals that are familiar to us today — including apes, cattle, deer, rabbits, kangaroos, wallabies, bears, and members of the canine and feline families — could be found during this time.",
+    "placement": "none",
+    "last": true
   },
   "8": {
-    "x": 30,
-    "y": 40,
-    "title": "cool title 4",
-    "content": "super content 4",
-    "placement": "right",
+    "x": 40,
+    "y": 30,
+    "title": "Tarantian: 126 thousand - 11,700 BCE years ago",
+    "content": "About 13,000 years ago, more than three-fourths of the large Ice Age animals, including woolly mammoths, mastodons, saber-toothed tigers and giant bears, died out.  Scientists have debated for years over the cause of the extinction, with both of the major hypotheses — human overhunting and climate change.",
+    "placement": "none",
+    "last": true
+  },
+    "9": {
+    "x": 40,
+    "y": 30,
+    "title": "Holocene: 11,700 BCE - to present day",
+    "content": "Climate has been fairly stable over the Holocene. Ice core records show that before the Holocene there was global warming after the end of the last ice age and cooling periods.",
+    "placement": "none",
+    "last": true
+  },
+  "10": {
+    "x": 40,
+    "y": 30,
+    "title": "Three million years",
+    "content": "Climate has been fairly stable over the Holocene. Ice core records show that before the Holocene there was global warming after the end of the last ice age and cooling periods.",
+    "placement": "none",
     "last": true,
     "end": true
   }

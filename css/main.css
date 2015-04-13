@@ -139,6 +139,9 @@ text {
     padding-right: 10px;
 }
 /* views */
+.popover{
+    max-width: 350px;
+}
 #popover-static {
   position: absolute;
   z-index: 1000;
@@ -158,4 +161,11 @@ text {
   font: 1em/1em 'Megrim', Georgia, serif;
   font-weight: 800;
   margin: 20px 0;
+}
+.tooltip > .tooltip-inner {
+  background-color: #fff;
+  color: black;
+}
+.tooltip > .tooltip-arrow {
+  border-color:#fff;
 }

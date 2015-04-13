@@ -2,14 +2,30 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Thesis project: Making data accesible: An overview of interac-tive data visualization using D3.js as applied to scientific datasets">
+        <meta name="description" content="Thesis project: Making data accesible: An overview of interac-tive data visualization using D3.js as applied to scientific datasets.">
         <meta name="keywords" content="HTML,CSS,JSON,JavaScript">
         <meta name="author" content="Laura Meskanen-Kundu">
-        <meta property="og:title" content="Thesis project: Making data accesible: An overview of interac-tive data visualization using D3.js as applied to scientific datasets" />
-        <meta property="og:site_name" content="3 million years of Earth Temperatures"/>
-        <meta property="og:url" content="http://www.lauramk.me/home/temperatures" />
-        <meta property="og:description" content="Scientific data of ice core samples 3 milion years to present displayed in an interactive storyline. A final year Media Engineering thesis project into data analysis and D3js." />
         <title>3 million years of Earth Temperatures</title>
+        <meta name="description" content="Thesis project: Making data accesible: An overview of interac-tive data visualization using D3.js as applied to scientific datasets." />
+
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@publisher_handle">
+        <meta name="twitter:title" content="Page Title">
+        <meta name="twitter:description" content="Thesis project: Making data accesible: An overview of interac-tive data visualization using D3.js as applied to scientific datasets.">
+        <meta name="twitter:creator" content="@author_handle">
+        <!-- Twitter Summary card images must be at least 120x120px -->
+        <meta name="twitter:image" content="http://www.example.com/image.jpg">
+
+        <!-- Open Graph data -->
+        <meta property="og:title" content="3 million years of Earth Temperatures" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="http://www.lauramk.me/home/temperatures" />
+        <meta property="og:image" content="http://example.com/image.jpg" />
+        <meta property="og:description" content="Thesis project: Making data accesible: An overview of interac-tive data visualization using D3.js as applied to scientific datasets." /> 
+        <meta property="og:site_name" content="Site Name, i.e. Moz" />
+        <meta property="fb:admins" content="Facebook numeric ID" />
+
         <script type="text/javascript" src="js/d3.min.v3.5.5.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
         <!-- Latest compiled and minified CSS -->
@@ -36,11 +52,12 @@
                 <h3 class="popover-title">Popover top</h3>
                 <div class="popover-content">
                   <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-                  <a tabindex="0" class="btn btn-primary btn-default btn-popover" role="button" data-toggle="popover" data-trigger="focus">Tell me more</a>
+                  <a tabindex="0" class="btn btn-primary btn-default btn-popover center-block" role="button" data-toggle="popover" data-trigger="focus">Tell me more</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-12 center-block" id="svgGraph"></div>
+            <div class="col-md-12 center-block" id="svgGraph"><i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="right" data-animation="true" title="Lines: Yellow=Deep-ocean temperature relative to present (degC), Blue=Atmospheric surface air temperature relative to present (degC)"></i></div>
+
         </div>
     </div>
     <div class="container-fuid relative fill" id="relative">

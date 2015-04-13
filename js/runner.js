@@ -12,8 +12,8 @@ var first = true;
 
 $( document ).ready(function() {
     var margin = {top: 10, right: 10, bottom: 50, left: 50},
-        width = document.getElementById('relative').offsetWidth-100,
-        height = window.innerHeight - 150;
+        width = document.getElementById('relative').offsetWidth-150,
+        height = window.innerHeight - 200;
 
     x = d3.scale.linear()
         .range([width, 0]);
@@ -46,7 +46,11 @@ $( document ).ready(function() {
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .append("text")
+        .attr("dy", "3em")
+        .style("text-anchor", "start")
+        .text("Time (3,000,000/3,000)");
 
     svg.append("g")
         .attr("class", "y axis")
@@ -250,4 +254,7 @@ $( document ).ready(function() {
             });
         }
     }
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 });
