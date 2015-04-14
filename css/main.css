@@ -32,14 +32,14 @@ a, a:link, a:visited, a:hover, a:active{
   overflow: hidden;
   height: auto;
 }
-.earth h1 {
+.container-fluid > .row > h1 {
   font: 3em/1.5em 'Megrim', Georgia, serif;
   color: #fff;
   text-transform: uppercase;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 0 auto;
   text-align: center;
   border-bottom: dashed 1px rgba(255, 255, 255, .5);
-  padding: 60px 0 10px 0;
+  padding: 60px 0 0 0;
   width: 70%;
 }
 @-webkit-keyframes rotate {
@@ -114,11 +114,16 @@ text {
   max-width: 100%;
   display: block;
   margin: auto;
-  margin-top: 50px;
   display: none;
 }
 .era{
   opacity: 0.2;
+}
+#svgGraph > .glyphicon {
+  position: absolute;
+  z-index: 100001;
+  right: 7%;
+  top: 5%;
 }
 /* Footer */
 .navbar{

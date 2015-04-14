@@ -8,14 +8,14 @@
   },
   "2": {
     "x": 20,
-    "y": 30,
+    "y": 45,
     "title": "Long-term average warmth - rise in sea levels",
     "content": "Deposition of sediments and mollusks of this age correspond with the rise in sea level (yellow curve).",
     "placement": "right"
   },
   "3": {
-    "x": 60,
-    "y": 35,
+    "x": 70,
+    "y": 55,
     "title": "Homo habilis fossils",
     "content": "Oldest known fossils unambiguously identified as Homo habilis date to just after the end of the Piacenzian.",
     "placement": "left",
