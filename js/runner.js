@@ -12,7 +12,7 @@ var first = true;
 
 $( document ).ready(function() {
     var margin = {top: 10, right: 10, bottom: 50, left: 50},
-        width = document.getElementById('relative').offsetWidth-150,
+        width = document.getElementById('relative').offsetWidth-100,
         height = window.innerHeight - 250;
 
     x = d3.scale.linear()

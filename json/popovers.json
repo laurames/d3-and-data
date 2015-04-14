@@ -14,8 +14,8 @@
     "placement": "right"
   },
   "3": {
-    "x": 70,
-    "y": 55,
+    "x": 60,
+    "y": 60,
     "title": "Homo habilis fossils",
     "content": "Oldest known fossils unambiguously identified as Homo habilis date to just after the end of the Piacenzian.",
     "placement": "left",
@@ -64,7 +64,7 @@
     "x": 40,
     "y": 30,
     "title": "Holocene: 11,700 BCE - to present day",
-    "content": "Climate has been fairly stable over the Holocene. Ice core records show that before the Holocene there was global warming after the end of the last ice age and cooling periods.",
+    "content": "Climate has been fairly stable over the Holocene. Ice core records show that before the Holocene there was global warming after the end of the last ice age and cooling periods. The current global warming may result in Earth becoming warmer than roughly 125,000 years ago (during the Ionian age).",
     "placement": "none",
     "last": true
   },
@@ -72,7 +72,7 @@
     "x": 40,
     "y": 30,
     "title": "Three million years",
-    "content": "Climate has been fairly stable over the Holocene. Ice core records show that before the Holocene there was global warming after the end of the last ice age and cooling periods.",
+    "content": "This is the how temperatures have risen and plummeted during a 3 million year cycle. As can be concluded the atmospheric surface air temperatures used to be higher or about the same as present day. What is still unclear is the slight rising of the temperatures that are happening today are normal or will lead to dramatic weather changes like the peak temperatures of the Piacenzian age before the last ice age. -- please take the survey on the front page",
     "placement": "none",
     "last": true,
     "end": true

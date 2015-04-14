@@ -94,6 +94,9 @@ a, a:link, a:visited, a:hover, a:active{
   font-size: 0.8em;
   margin-left: -8px;
 }
+.buttonRow{
+  padding-bottom: 80px;
+}
 /* d3js graph styles */
 .axis path,
 .axis line {
@@ -124,6 +127,7 @@ text {
   z-index: 100001;
   right: 7%;
   top: 5%;
+  font-size: 2em;
 }
 /* Footer */
 .navbar{
